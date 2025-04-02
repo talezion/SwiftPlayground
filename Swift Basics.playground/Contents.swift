@@ -15,8 +15,8 @@ print("Total travel distance: \(totalDistance) km")
 // SLIDE 3: STRINGS AND CHARACTERS
 let currency = "USD"
 let amount = 1000
-let transaction = "Deposit: \(amount) \(currency)"
-print(transaction)
+let stringTransactionn = "Deposit: \(amount) \(currency)"
+print(stringTransactionn)
 
 // SLIDE 4: COLLECTION TYPES
 let blockTransactions = ["tx1", "tx2", "tx3"]
@@ -79,8 +79,8 @@ struct Movie {
         return "Movie: \(title)"
     }
 }
-let film = Movie(title: "Interstellar")
-print(film.description())
+let movie = Movie(title: "Interstellar")
+print(movie.description())
 
 // SLIDE 12: SUBSCRIPTS
 struct Itinerary {
@@ -135,8 +135,8 @@ class Director {
 class Film {
     var director: Director?
 }
-let film = Film()
-if let directorName = film.director?.name {
+let optionalChainingFilm = Film()
+if let directorName = optionalChainingFilm.director?.name {
     print("Director: \(directorName)")
 } else {
     print("No director info available")
@@ -171,9 +171,9 @@ Task {
 
 // SLIDE 21: TYPE CASTING
 class Media { }
-class Movie: Media { }
-let mediaItem: Media = Movie()
-if let film = mediaItem as? Movie {
+class TypeCastingMovie: Media { }
+let mediaItem: Media = TypeCastingMovie()
+if let film = mediaItem as? TypeCastingMovie {
     print("Casting successful: \(film)")
 }
 
@@ -184,8 +184,8 @@ struct Journey {
     }
     var mode: Mode
 }
-let trip = Journey(mode: .airplane)
-print("Travel mode: \(trip.mode)")
+let nestedTypeTrip = Journey(mode: .airplane)
+print("Travel mode: \(nestedTypeTrip.mode)")
 
 // SLIDE 23: EXTENSIONS
 extension Double {
@@ -226,14 +226,14 @@ protocol Container {
     mutating func add(item: Item)
 }
 
-struct CryptoWallet: Container {
+struct GenericCryptoWallet: Container {
     var items: [String] = []  // 'Item' inferred as String
     mutating func add(item: String) {
         items.append(item)
     }
 }
 
-var wallet = CryptoWallet()
+var wallet = GenericCryptoWallet()
 wallet.add(item: "Bitcoin")
 wallet.add(item: "Ethereum")
 print("Wallet contains: \(wallet.items)")
@@ -250,11 +250,8 @@ struct MovieReview: Reviewable {
 func getReview() -> some Reviewable {
     return MovieReview()
 }
-func getNReview() -> Reviewable {
-    return MovieReview()
-}
+
 print(getReview().review())
-print(getNReview().review())
 
 // SLIDE 27: AUTOMATIC REFERENCE COUNTING (ARC)
 class Tourist {
