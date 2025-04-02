@@ -22,13 +22,14 @@ let destinationLengths = destinations.map { $0.count }
 print("Destination name lengths: \(destinationLengths)")
 
 /// Closure as a callback
-func performAsyncTask(completion: @escaping (String) -> Void) {
+func performAsyncTask(completion: @escaping @Sendable (String) -> Void) {
     DispatchQueue.global().async {
         // Simulate asynchronous work
         sleep(1)
         completion("Task Completed")
     }
 }
+
 performAsyncTask { result in
     print(result)
 }
